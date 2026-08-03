@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashar Industries | Premium Apparel Manufacturing</title>
+    
+    <!-- Fonts: Poppins (Headings) & Roboto (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            surface: '#121212',
+                            surface_hover: '#1a1a1a',
+                            primary: '#4F46E5', /* Indigo */
+                            secondary: '#06B6D4', /* Cyan */
+                            accent: '#F43F5E', /* Rose */
+                            muted: '#A1A1AA',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #FFFFFF; 
+            overflow-x: hidden;
+        }
+        
+        /* Modern Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(18, 18, 18, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 30, 30, 0.6) 0%, rgba(15, 15, 15, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.5rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(79, 70, 229, 0.5); /* Primary color */
+            box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .text-gradient-warm {
+            background: linear-gradient(135deg, #F43F5E, #F97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Buttons */
+        .btn-modern {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+            background: linear-gradient(135deg, #4F46E5, #06B6D4);
+            border-radius: 9999px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #06B6D4, #4F46E5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        .btn-modern:hover::before { opacity: 1; }
+        .btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.5);
+        }
+
+        .btn-outline {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #FFFFFF;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .image-wrapper {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+        }
+        .image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,5,5,0.8), transparent);
+            pointer-events: none;
+        }
+        
+        .mesh-blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            border-radius: 50%;
+            animation: blob 10s infinite alternate;
+        }
+    </style>
+</head>
+<body class="font-roboto text-brand-muted bg-brand-dark selection:bg-brand-primary selection:text-white">
+
+    <!-- Global Background Elements -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="mesh-blob bg-brand-primary w-96 h-96 top-[-10%] left-[-10%]"></div>
+        <div class="mesh-blob bg-brand-secondary w-96 h-96 bottom-[10%] right-[-10%]" style="animation-delay: 2s;"></div>
+        <div class="mesh-blob bg-brand-accent w-80 h-80 top-[40%] left-[50%] transform -translate-x-1/2" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="text-2xl font-poppins font-bold tracking-tight text-white flex items-center gap-2">
+                Ashar<span class="font-light text-gradient">Industries</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">About</a>
+                <a href="#services" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="#products" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Products</a>
+                <a href="#process" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Process</a>
+            </div>
+            <a href="#contact" class="hidden md:inline-flex btn-modern !py-2 !px-6 !text-xs">Request Quote</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full grid lg:grid-cols-2 gap-16 items-center">
+            
+            <div data-aos="fade-up" data-aos-duration="1000">
+                <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-brand-secondary animate-pulse"></span>
+                    <span class="text-xs font-poppins font-medium tracking-wider text-white uppercase">Premium Manufacturing</span>
+                </div>
+                
+                <h1 class="text-5xl lg:text-7xl font-poppins font-bold leading-tight text-white mb-6">
+                    Crafting The <br>
+                    <span class="text-gradient">Future of Apparel.</span>
+                </h1>
+                
+                <p class="text-lg font-roboto text-gray-400 mb-10 max-w-lg leading-relaxed">
+                    Ashar Industries partners with elite global brands to engineer, design, and produce premium-quality garments with unparalleled precision and scale.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-modern">Start Project</a>
+                    <a href="#services" class="btn-outline">Explore Capabilities</a>
+                </div>
+                
+                <!-- Metric Highlights -->
+                <div class="grid grid-cols-3 gap-6 mt-16 pt-10 border-t border-white/10">
+                    <div>
+                        <h4 class="text-3xl font-poppins font-bold text-white mb-1">10<span class="text-brand-secondary">+</span></h4>
+                        <p class="text-xs font-poppins text-gray-500 uppercase tracking-widest">Years Exp</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-poppins font-bold text-white mb-1">1M<span class="text-brand-primary">+</span></h4>
+                        <p class="text-xs font-poppins text-gray-500 uppercase tracking-widest">Units/Yr</p>
+                    </div>
+                    <div>
+                        <h4 class="text-3xl font-poppins font-bold text-white mb-1">50<span class="text-brand-accent">+</span></h4>
+                        <p class="text-xs font-poppins text-gray-500 uppercase tracking-widest">Global Brands</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative lg:h-[700px] h-[500px]" data-aos="fade-left" data-aos-duration="1200">
+                <div class="image-wrapper w-full h-full animate-float">
+                    <img src="./images/light_hero_apparel_1785503862734.png" alt="Premium Apparel" class="w-full h-full object-cover">
+                </div>
+                <!-- Floating Glass Elements -->
+                <div class="absolute -bottom-10 -left-10 p-6 glass-card w-64 hidden md:block" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="w-10 h-10 rounded-full bg-brand-primary/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <h5 class="font-poppins font-semibold text-white text-sm">Quality Assured</h5>
+                    </div>
+                    <p class="text-xs text-gray-400">Multi-level inspection ensuring flawless delivery.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-center">
+                
+                <div class="lg:col-span-6 relative" data-aos="fade-right">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="image-wrapper h-64 lg:h-80 mt-12">
+                            <img src="./images/light_craftsmanship_1785503872536.png" alt="Craftsmanship" class="w-full h-full object-cover">
+                        </div>
+                        <div class="image-wrapper h-64 lg:h-80">
+                            <img src="./images/ashar_craftsmanship_1785502564555.png" alt="Detail" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-6" data-aos="fade-up">
+                    <h2 class="text-sm font-poppins font-bold tracking-widest text-brand-secondary uppercase mb-4">Our DNA</h2>
+                    <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white mb-6 leading-tight">Engineered for <br>Global Excellence.</h3>
+                    <p class="font-roboto text-gray-400 text-lg mb-6 leading-relaxed">
+                        Ashar Industries transcends traditional manufacturing. We are an innovation hub for apparel, merging cutting-edge production technology with master craftsmanship.
+                    </p>
+                    <p class="font-roboto text-gray-400 text-lg mb-8 leading-relaxed">
+                        Whether you require full-scale OEM/ODM solutions, precise Private Label manufacturing, or specialized CMT services, our agile infrastructure adapts to your scale, delivering uncompromising quality on every order.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-10 font-poppins text-white">
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-brand-primary"></span>
+                            End-to-end Product Development
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-brand-secondary"></span>
+                            Sustainable & Ethical Sourcing
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+                            Scalable Manufacturing Capacity
+                        </li>
+                    </ul>
+                    
+                    <a href="#full-about" class="btn-outline">Discover Our Story</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-sm font-poppins font-bold tracking-widest text-brand-primary uppercase mb-4">Capabilities</h2>
+                <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white mb-6">Comprehensive Solutions.</h3>
+                <p class="font-roboto text-gray-400">A vertically integrated approach providing everything you need to bring your collections to market.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service Cards -->
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-secondary transition-colors mb-4">01</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">Private Label</h4>
+                    <p class="font-roboto text-gray-400 text-sm">Turnkey solutions for brands looking to launch with premium ready-made blanks or custom designs with exclusive branding.</p>
+                </div>
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-primary transition-colors mb-4">02</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">OEM Manufacturing</h4>
+                    <p class="font-roboto text-gray-400 text-sm">Bring your exact tech packs to life. We manufacture to your precise specifications using our premium fabric network.</p>
+                </div>
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-accent transition-colors mb-4">03</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">ODM Development</h4>
+                    <p class="font-roboto text-gray-400 text-sm">Need design assistance? Our in-house designers create unique collections tailored to your brand identity.</p>
+                </div>
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-primary transition-colors mb-4">04</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">Cut, Make, Trim (CMT)</h4>
+                    <p class="font-roboto text-gray-400 text-sm">Supply your own materials and let our master craftsmen handle the cutting, sewing, and finishing with precision.</p>
+                </div>
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-accent transition-colors mb-4">05</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">Pattern & Sampling</h4>
+                    <p class="font-roboto text-gray-400 text-sm">Digital pattern making, grading, and rapid prototyping to perfect your fit before bulk production begins.</p>
+                </div>
+                <div class="glass-card p-8 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl font-poppins font-bold text-white/10 group-hover:text-brand-secondary transition-colors mb-4">06</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3">Printing & Embroidery</h4>
+                    <p class="font-roboto text-gray-400 text-sm">High-end embellishments including puff print, DTG, screen printing, and intricate 3D embroidery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products (Bento Grid) -->
+    <section id="products" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
+                <div>
+                    <h2 class="text-sm font-poppins font-bold tracking-widest text-brand-accent uppercase mb-4">Product Range</h2>
+                    <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white">Versatile Expertise.</h3>
+                </div>
+                <p class="font-roboto text-gray-400 max-w-sm mt-4 md:mt-0 text-right">From lightweight knits to heavy outerwear, our production lines are equipped for diversity.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-3 gap-6 h-auto lg:h-[600px]">
+                
+                <!-- Large Feature Image -->
+                <div class="lg:col-span-2 image-wrapper relative group" data-aos="fade-up" data-aos-delay="0">
+                    <img src="./images/ashar_apparel_stack_1785502573789.png" alt="Apparel Stack" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <h4 class="text-3xl font-poppins font-bold text-white mb-2">Streetwear & Basics</h4>
+                        <p class="text-gray-300 font-roboto">Heavyweight T-shirts, Hoodies, Sweatshirts, Joggers</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-rows-2 gap-6">
+                    <div class="glass-card p-8 flex flex-col justify-end relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brand-primary/20 blur-3xl rounded-full group-hover:bg-brand-primary/40 transition-colors"></div>
+                        <h4 class="text-2xl font-poppins font-bold text-white mb-2">Activewear</h4>
+                        <p class="text-gray-400 font-roboto text-sm">Performance fabrics, leggings, sports bras, tracksuits.</p>
+                    </div>
+                    <div class="glass-card p-8 flex flex-col justify-end relative overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="absolute bottom-0 left-0 w-32 h-32 bg-brand-secondary/20 blur-3xl rounded-full group-hover:bg-brand-secondary/40 transition-colors"></div>
+                        <h4 class="text-2xl font-poppins font-bold text-white mb-2">Outerwear</h4>
+                        <p class="text-gray-400 font-roboto text-sm">Jackets, windbreakers, cargo pants, workwear.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Timeline -->
+    <section id="process" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white mb-6">The Manufacturing <span class="text-gradient">Flow</span></h3>
+                <p class="font-roboto text-gray-400 max-w-2xl mx-auto">A streamlined, transparent process designed to minimize friction and maximize quality from day one.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="relative" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-6xl font-poppins font-bold text-white/5 absolute -top-8 -left-4">01</div>
+                    <h4 class="text-xl font-poppins font-semibold text-brand-secondary mb-3 relative z-10">Consult & Ideate</h4>
+                    <p class="text-gray-400 font-roboto text-sm relative z-10">Review tech packs, discuss fabric options, and align on project scope and timelines.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-6xl font-poppins font-bold text-white/5 absolute -top-8 -left-4">02</div>
+                    <h4 class="text-xl font-poppins font-semibold text-brand-primary mb-3 relative z-10">Sample Development</h4>
+                    <p class="text-gray-400 font-roboto text-sm relative z-10">Create patterns, source materials, and produce pre-production samples for your approval.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-6xl font-poppins font-bold text-white/5 absolute -top-8 -left-4">03</div>
+                    <h4 class="text-xl font-poppins font-semibold text-brand-accent mb-3 relative z-10">Bulk Production</h4>
+                    <p class="text-gray-400 font-roboto text-sm relative z-10">Efficient, scaled manufacturing with inline quality control checks at every stage.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-6xl font-poppins font-bold text-white/5 absolute -top-8 -left-4">04</div>
+                    <h4 class="text-xl font-poppins font-semibold text-white mb-3 relative z-10">QC & Logistics</h4>
+                    <p class="text-gray-400 font-roboto text-sm relative z-10">Final AQL inspections, custom packaging, and global freight forwarding to your warehouse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full About / Why Choose Us -->
+    <section id="full-about" class="py-24 relative bg-brand-surface/50 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div data-aos="fade-right">
+                    <h3 class="text-3xl lg:text-4xl font-poppins font-bold text-white mb-8">Why The World's Best Brands Choose Ashar.</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="mt-1 w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-brand-primary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-poppins font-semibold text-white">Uncompromising Quality</h4>
+                                <p class="text-gray-400 font-roboto mt-1">Multi-level QA protocols ensure every garment meets stringent international export standards.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-brand-secondary">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-poppins font-semibold text-white">Speed & Agility</h4>
+                                <p class="text-gray-400 font-roboto mt-1">Optimized supply chains allow for faster turnaround times without sacrificing precision.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="mt-1 w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-brand-accent">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-poppins font-semibold text-white">Global Reach</h4>
+                                <p class="text-gray-400 font-roboto mt-1">Seamless international shipping logistics, delivering direct to your distribution centers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl blur-2xl opacity-20"></div>
+                    <div class="glass-card p-10 relative">
+                        <h4 class="text-2xl font-poppins font-bold text-white mb-6">Our Commitment</h4>
+                        <p class="font-roboto text-gray-300 text-lg leading-relaxed italic border-l-4 border-brand-primary pl-6">
+                            "We don't just manufacture clothes; we engineer brand equity. Every stitch represents our dedication to elevating your label in a competitive global market."
+                        </p>
+                        <div class="mt-8 flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full"></div>
+                            <div>
+                                <h5 class="text-white font-poppins font-semibold">Leadership Team</h5>
+                                <p class="text-sm text-gray-500 font-roboto">Ashar Industries</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-32 relative text-center">
+        <div class="max-w-4xl mx-auto px-6 relative z-10" data-aos="zoom-in">
+            <h2 class="text-5xl lg:text-7xl font-poppins font-bold text-white mb-8">
+                Ready to <span class="text-gradient">Scale?</span>
+            </h2>
+            <p class="text-xl text-gray-400 font-roboto mb-12 max-w-2xl mx-auto">
+                Partner with a manufacturer that understands your vision. Let's discuss your next collection and bring it to life.
+            </p>
+            <a href="mailto:contact@asharindustries.com" class="btn-modern !text-lg !px-10 !py-4 shadow-[0_0_40px_rgba(79,70,229,0.4)] hover:shadow-[0_0_60px_rgba(79,70,229,0.6)]">
+                Start Your Production
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <a href="#" class="text-2xl font-poppins font-bold tracking-tight text-white flex items-center gap-2 mb-6">
+                    Ashar<span class="font-light text-gradient">Industries</span>
+                </a>
+                <p class="text-gray-500 font-roboto max-w-sm">
+                    Advanced apparel manufacturing solutions for modern brands. Engineered for excellence, built for scale.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-poppins font-semibold mb-6">Navigation</h4>
+                <ul class="space-y-3 font-roboto text-gray-500">
+                    <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+                    <li><a href="#products" class="hover:text-white transition-colors">Products</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-poppins font-semibold mb-6">Connect</h4>
+                <ul class="space-y-3 font-roboto text-gray-500">
+                    <li><a href="mailto:contact@asharindustries.com" class="hover:text-white transition-colors text-gradient-warm">contact@asharindustries.com</a></li>
+                    <li>Global HQ</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 font-roboto">
+            <p>&copy; 2026 Ashar Industries. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Premium Manufacturing Partner.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ 
+            once: true, 
+            offset: 50, 
+            duration: 800, 
+            easing: 'ease-out-cubic' 
+        });
+    </script>
+</body>
+</html>

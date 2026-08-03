@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Ashar Industries</title>
+    
+    <!-- Fonts: Poppins (Headings) & Roboto (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            surface: '#121212',
+                            surface_hover: '#1a1a1a',
+                            primary: '#4F46E5', /* Indigo */
+                            secondary: '#06B6D4', /* Cyan */
+                            accent: '#F43F5E', /* Rose */
+                            muted: '#A1A1AA',
+                        }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #FFFFFF; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+
+        .glass { background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .glass-card { background: linear-gradient(145deg, rgba(30, 30, 30, 0.6) 0%, rgba(15, 15, 15, 0.6) 100%); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
+        .glass-card:hover { transform: translateY(-5px); border-color: rgba(79, 70, 229, 0.5); box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.3); }
+
+        .text-gradient { background: linear-gradient(135deg, #4F46E5, #06B6D4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-gradient-warm { background: linear-gradient(135deg, #F43F5E, #F97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .btn-modern { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2.5rem; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: #FFFFFF; background: linear-gradient(135deg, #4F46E5, #06B6D4); border-radius: 9999px; overflow: hidden; transition: all 0.3s ease; z-index: 1; }
+        .btn-modern::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #06B6D4, #4F46E5); opacity: 0; transition: opacity 0.3s ease; z-index: -1; }
+        .btn-modern:hover::before { opacity: 1; }
+        .btn-modern:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.5); }
+
+        .image-wrapper { position: relative; border-radius: 1.5rem; overflow: hidden; }
+        .image-wrapper::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(5,5,5,0.8), transparent); pointer-events: none; }
+        
+        .mesh-blob { position: absolute; filter: blur(80px); opacity: 0.4; border-radius: 50%; animation: blob 10s infinite alternate; }
+    </style>
+</head>
+<body class="font-roboto text-brand-muted bg-brand-dark selection:bg-brand-primary selection:text-white">
+
+    <!-- Global Background Elements -->
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+        <div class="mesh-blob bg-brand-primary w-96 h-96 top-[-10%] left-[-10%]"></div>
+        <div class="mesh-blob bg-brand-secondary w-96 h-96 bottom-[10%] right-[-10%]" style="animation-delay: 2s;"></div>
+        <div class="mesh-blob bg-brand-accent w-80 h-80 top-[40%] left-[50%] transform -translate-x-1/2" style="animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-poppins font-bold tracking-tight text-white flex items-center gap-2">
+                Ashar<span class="font-light text-gradient">Industries</span>
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="about.html" class="text-sm font-poppins font-medium text-white transition-colors">About Us</a>
+                <a href="index.html#services" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Services</a>
+                <a href="index.html#products" class="text-sm font-poppins font-medium text-gray-300 hover:text-white transition-colors">Products</a>
+            </div>
+            <a href="contact.html" class="hidden md:inline-flex btn-modern !py-2 !px-6 !text-xs">Request Quote</a>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="relative pt-40 pb-20 lg:pt-56 lg:pb-32 flex flex-col items-center justify-center text-center">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8" data-aos="fade-up">
+            <h1 class="text-5xl lg:text-7xl font-poppins font-bold leading-tight text-white mb-6">
+                Premium Apparel Manufacturing. <br>
+                <span class="text-gradient">Trusted Partnerships.</span> Lasting Quality.
+            </h1>
+        </div>
+    </section>
+
+    <!-- Introduction Content -->
+    <section class="py-16 relative z-10">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8" data-aos="fade-up">
+            <div class="glass-card p-10 lg:p-16">
+                <div class="space-y-8 font-roboto text-lg text-gray-300 leading-relaxed">
+                    <p>
+                        Ashar Industries is a premium apparel manufacturing company committed to helping fashion brands transform ideas into exceptional products. We specialize in private label manufacturing, OEM, ODM, and Cut-Make-Trim (CMT) services, delivering garments that meet the highest standards of quality, consistency, and craftsmanship.
+                    </p>
+                    <p>
+                        From ambitious startups launching their first collection to established brands expanding their product lines, we provide dependable manufacturing solutions tailored to every stage of growth.
+                    </p>
+                    <p>
+                        We believe that great manufacturing is built on precision, transparency, and long-term relationships. Every project is approached with attention to detail, efficient production processes, and a commitment to delivering products that strengthen our clients' brands.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass-card p-10 border-l-4 border-l-brand-primary" data-aos="fade-right">
+                    <h3 class="text-3xl font-poppins font-bold text-white mb-6">Our Vision</h3>
+                    <p class="font-roboto text-gray-400 text-lg leading-relaxed">
+                        To become one of the world's most trusted apparel manufacturing companies by delivering exceptional quality, embracing innovation, and building lasting partnerships with brands across the globe.
+                    </p>
+                </div>
+                <div class="glass-card p-10 border-l-4 border-l-brand-secondary" data-aos="fade-left">
+                    <h3 class="text-3xl font-poppins font-bold text-white mb-6">Our Mission</h3>
+                    <p class="font-roboto text-gray-400 text-lg leading-relaxed">
+                        Our mission is to empower fashion brands with premium manufacturing solutions that combine skilled craftsmanship, modern production techniques, ethical business practices, and reliable execution. We aim to simplify the manufacturing journey while helping our partners bring outstanding products to market.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="py-24 relative bg-brand-surface/50 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white mb-6">What We Do</h3>
+                <p class="font-roboto text-gray-400 max-w-2xl mx-auto text-lg">
+                    Ashar Industries provides complete apparel manufacturing solutions, including:
+                </p>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <span class="px-6 py-3 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-white font-poppins font-medium">Private Label Manufacturing</span>
+                <span class="px-6 py-3 rounded-full border border-brand-secondary/50 bg-brand-secondary/10 text-white font-poppins font-medium">OEM Manufacturing</span>
+                <span class="px-6 py-3 rounded-full border border-brand-accent/50 bg-brand-accent/10 text-white font-poppins font-medium">ODM Product Development</span>
+                <span class="px-6 py-3 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-white font-poppins font-medium">Cut, Make & Trim (CMT)</span>
+                <span class="px-6 py-3 rounded-full border border-brand-secondary/50 bg-brand-secondary/10 text-white font-poppins font-medium">Product Sampling</span>
+                <span class="px-6 py-3 rounded-full border border-brand-accent/50 bg-brand-accent/10 text-white font-poppins font-medium">Pattern Development</span>
+                <span class="px-6 py-3 rounded-full border border-brand-primary/50 bg-brand-primary/10 text-white font-poppins font-medium">Fabric Sourcing</span>
+                <span class="px-6 py-3 rounded-full border border-brand-secondary/50 bg-brand-secondary/10 text-white font-poppins font-medium">Screen Printing & Embroidery</span>
+                <span class="px-6 py-3 rounded-full border border-brand-accent/50 bg-brand-accent/10 text-white font-poppins font-medium">Custom Labels & Packaging</span>
+                <span class="px-6 py-3 rounded-full border border-white/20 bg-white/5 text-white font-poppins font-medium">Quality Control & Global Shipping</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h3 class="text-4xl lg:text-5xl font-poppins font-bold text-white">Our Core Values</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-8" data-aos="fade-up">
+                    <h4 class="text-2xl font-poppins font-bold text-white mb-4">Quality Without Compromise</h4>
+                    <p class="font-roboto text-gray-400">Every garment is produced with strict quality standards, careful inspection, and attention to detail.</p>
+                </div>
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="50">
+                    <h4 class="text-2xl font-poppins font-bold text-white mb-4">Integrity</h4>
+                    <p class="font-roboto text-gray-400">We believe in honest communication, transparent processes, and building trust through every partnership.</p>
+                </div>
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="text-2xl font-poppins font-bold text-white mb-4">Innovation</h4>
+                    <p class="font-roboto text-gray-400">We continuously improve our manufacturing methods, technology, and production capabilities to deliver better results.</p>
+                </div>
+                <div class="glass-card p-8" data-aos="fade-up" data-aos-delay="0">
+                    <h4 class="text-2xl font-poppins font-bold text-white mb-4">Reliability</h4>
+                    <p class="font-roboto text-gray-400">We understand the importance of deadlines and consistency. Our clients depend on us, and we take that responsibility seriously.</p>
+                </div>
+                <div class="glass-card p-8 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="50">
+                    <h4 class="text-2xl font-poppins font-bold text-white mb-4">Long-Term Partnerships</h4>
+                    <p class="font-roboto text-gray-400">We don't simply manufacture garments—we help brands grow. Our success is measured by the long-term success of our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Serve -->
+    <section class="py-24 relative bg-brand-surface/50 border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+            <h3 class="text-3xl font-poppins font-bold text-white mb-6" data-aos="fade-up">Who We Serve</h3>
+            <p class="font-roboto text-gray-400 mb-12" data-aos="fade-up">We proudly work with:</p>
+            
+            <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Fashion Brands</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Streetwear Labels</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Luxury Apparel Brands</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Startups</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">E-commerce Businesses</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Corporate Companies</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Sportswear Brands</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Retail Chains</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Schools & Universities</span>
+                <span class="px-5 py-2 rounded-lg border border-white/10 bg-black/40 text-gray-300 font-poppins text-sm tracking-wide">Hospitality & Healthcare Organizations</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Promise -->
+    <section class="py-32 relative text-center">
+        <div class="max-w-4xl mx-auto px-6 relative z-10" data-aos="zoom-in">
+            <h2 class="text-sm font-poppins font-bold tracking-widest text-brand-primary uppercase mb-6">Our Promise</h2>
+            <p class="text-3xl lg:text-4xl font-poppins font-light text-white mb-10 leading-relaxed italic">
+                "Every stitch, every fabric, and every product reflects our commitment to excellence. Whether producing a small launch collection or large-scale manufacturing runs, Ashar Industries is dedicated to delivering premium apparel that represents your brand with confidence."
+            </p>
+            <p class="text-xl text-gray-400 font-roboto">
+                We are more than a manufacturer—we are your long-term apparel production partner.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div class="lg:col-span-2">
+                <a href="index.html" class="text-2xl font-poppins font-bold tracking-tight text-white flex items-center gap-2 mb-6">
+                    Ashar<span class="font-light text-gradient">Industries</span>
+                </a>
+                <p class="text-gray-500 font-roboto max-w-sm">
+                    Premium apparel manufacturing for global brands. Engineered for excellence, built for scale.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-poppins font-semibold mb-6">Navigation</h4>
+                <ul class="space-y-3 font-roboto text-gray-500">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="text-white font-poppins font-semibold mb-6">Connect</h4>
+                <ul class="space-y-3 font-roboto text-gray-500">
+                    <li><a href="contact.html" class="hover:text-white transition-colors text-gradient-warm">contact@asharindustries.com</a></li>
+                    <li>Global HQ</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 font-roboto">
+            <p>&copy; 2026 Ashar Industries. All rights reserved.</p>
+            <p class="mt-4 md:mt-0">Premium Manufacturing Partner.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ 
+            once: true, 
+            offset: 50, 
+            duration: 800, 
+            easing: 'ease-out-cubic' 
+        });
+    </script>
+</body>
+</html>
