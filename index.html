@@ -66,18 +66,38 @@
         .num-serif { font-family: 'Playfair Display', serif; font-style: italic; color: #9C968B; }
     </style>
 </head>
-<body class="antialiased selection:bg-brand-black selection:text-white">
+<body class="antialiased selection:bg-brand-black selection:text-white overflow-x-hidden">
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300 py-5">
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center">
-            <a href="#" class="text-2xl font-serif font-semibold tracking-tight uppercase">Ashar<span class="font-sans font-light text-brand-taupe text-xl ml-2">Industries</span></a>
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center relative z-20">
+            <a href="#" class="text-2xl font-serif font-semibold tracking-tight uppercase relative z-20">Ashar<span class="font-sans font-light text-brand-taupe text-xl ml-2">Industries</span></a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-10 items-center">
                 <a href="#about" class="text-xs font-medium uppercase tracking-widest text-brand-gray hover:text-brand-black transition-colors">About</a>
                 <a href="#services" class="text-xs font-medium uppercase tracking-widest text-brand-gray hover:text-brand-black transition-colors">Services</a>
                 <a href="#products" class="text-xs font-medium uppercase tracking-widest text-brand-gray hover:text-brand-black transition-colors">Products</a>
                 <a href="#process" class="text-xs font-medium uppercase tracking-widest text-brand-gray hover:text-brand-black transition-colors">Process</a>
                 <a href="#contact" class="text-xs font-medium uppercase tracking-widest text-brand-black border-b border-brand-black pb-1 hover:text-brand-taupe hover:border-brand-taupe transition-all">Request Quote</a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none relative z-20">
+                <span class="block w-6 h-[2px] bg-brand-black transition-transform duration-300 ease-in-out origin-center"></span>
+                <span class="block w-6 h-[2px] bg-brand-black transition-opacity duration-300 ease-in-out"></span>
+                <span class="block w-6 h-[2px] bg-brand-black transition-transform duration-300 ease-in-out origin-center"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-10 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out h-screen w-screen">
+            <div class="flex flex-col space-y-8 items-center text-center">
+                <a href="#about" class="mobile-link text-2xl font-serif font-medium uppercase tracking-widest text-brand-black hover:text-brand-taupe transition-colors">About</a>
+                <a href="#services" class="mobile-link text-2xl font-serif font-medium uppercase tracking-widest text-brand-black hover:text-brand-taupe transition-colors">Services</a>
+                <a href="#products" class="mobile-link text-2xl font-serif font-medium uppercase tracking-widest text-brand-black hover:text-brand-taupe transition-colors">Products</a>
+                <a href="#process" class="mobile-link text-2xl font-serif font-medium uppercase tracking-widest text-brand-black hover:text-brand-taupe transition-colors">Process</a>
+                <a href="#contact" class="mobile-link mt-6 text-sm font-sans font-medium uppercase tracking-widest text-brand-black border border-brand-black px-8 py-3 hover:bg-brand-black hover:text-white transition-colors">Request Quote</a>
             </div>
         </div>
     </nav>
@@ -489,6 +509,55 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, offset: 50, duration: 1000, easing: 'ease-out-cubic' });
+
+        // Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const spans = btn.querySelectorAll('span');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            const isMenuOpen = menu.classList.contains('opacity-100');
+            
+            if (isMenuOpen) {
+                // Close menu
+                menu.classList.remove('opacity-100', 'pointer-events-auto');
+                menu.classList.add('opacity-0', 'pointer-events-none');
+                
+                // Reset hamburger icon
+                spans[0].classList.remove('rotate-45', 'translate-y-2');
+                spans[1].classList.remove('opacity-0');
+                spans[2].classList.remove('-rotate-45', '-translate-y-2');
+                
+                // Re-enable body scroll
+                document.body.style.overflow = '';
+            } else {
+                // Open menu
+                menu.classList.remove('opacity-0', 'pointer-events-none');
+                menu.classList.add('opacity-100', 'pointer-events-auto');
+                
+                // Animate hamburger to X
+                spans[0].classList.add('rotate-45', 'translate-y-2');
+                spans[1].classList.add('opacity-0');
+                spans[2].classList.add('-rotate-45', '-translate-y-2');
+                
+                // Disable body scroll
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        if (btn) {
+            btn.addEventListener('click', toggleMenu);
+        }
+
+        // Close menu when clicking on a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(menu.classList.contains('opacity-100')) {
+                    toggleMenu();
+                }
+            });
+        });
     </script>
 </body>
 </html>
