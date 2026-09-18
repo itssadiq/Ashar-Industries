@@ -68,9 +68,63 @@
 </head>
 <body class="antialiased selection:bg-brand-black selection:text-white overflow-x-hidden">
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
-        <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center relative z-20">
+    <!-- Announcement Popup -->
+    <div id="announcement-popup" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 opacity-0 pointer-events-none transition-opacity duration-300 px-4">
+        <div class="bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative transform scale-95 transition-transform duration-300" id="announcement-content">
+            <!-- Close button -->
+            <button id="close-popup-btn" class="absolute top-4 right-4 text-brand-gray hover:text-brand-black transition-colors focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="p-8 md:p-12">
+                <div class="flex items-center justify-center mb-6 text-red-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl md:text-2xl font-serif font-medium text-center text-brand-black mb-8 leading-tight">
+                    IMPORTANT PAYMENT & TRANSACTION NOTICE <br>
+                    <span class="text-sm font-sans tracking-[0.1em] text-brand-taupe uppercase mt-2 block">— ASHAR INDUSTRIES —</span>
+                </h3>
+                
+                <div class="space-y-4 font-sans text-brand-gray text-sm md:text-base font-light leading-relaxed">
+                    <p><strong class="font-medium text-brand-black">For your protection</strong>, please note that all orders, quotations, agreements, payments and financial transactions with Ashar Industries must be officially confirmed through <strong class="font-medium text-brand-black">Mr. Hamza Muhammad</strong>.</p>
+                    
+                    <p class="text-red-600 font-medium">All payments must be made ONLY into the official Ashar Industries company bank account.</p>
+                    
+                    <p>Ashar Industries representatives may communicate with clients from personal phone/WhatsApp numbers; however, <strong class="font-medium text-brand-black">no employee, salesperson, representative or other individual is authorized to receive company payments</strong> into a personal bank account, wallet, Easypaisa/JazzCash account or any other unofficial account.</p>
+                    
+                    <p>Please do not make any payment solely on the basis of a WhatsApp message, phone call, quotation or meeting with an individual.</p>
+                    
+                    <p>Before transferring any money, please verify the account title and bank details directly with <strong class="font-medium text-brand-black">Mr. Hamza Muhammad</strong>.</p>
+                    
+                    <p>Ashar Industries will not accept responsibility for payments made to unauthorized persons or unofficial accounts without prior official confirmation.</p>
+                    
+                    <p class="italic mt-6 text-center text-brand-black font-medium">Thank you for helping us keep your transactions secure.</p>
+                </div>
+                
+                <div class="mt-10 flex justify-center">
+                    <button id="accept-popup-btn" class="btn-elegant w-full md:w-auto">I Understand</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header with Notice and Nav -->
+    <header class="fixed w-full z-50 transition-all duration-300">
+        <!-- Top Notice Bar -->
+        <div class="bg-brand-black text-white text-center py-2.5 text-xs md:text-sm font-sans tracking-wide cursor-pointer hover:bg-gray-900 transition-colors flex justify-center items-center gap-2 border-b border-gray-800" id="top-notice-bar">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span>Important Payment Notice — <strong class="underline decoration-brand-taupe underline-offset-2">Click Here to Read</strong></span>
+        </div>
+        
+        <!-- Navigation -->
+        <nav class="w-full glass-nav">
+            <div class="max-w-[1400px] mx-auto px-6 lg:px-12 flex justify-between items-center relative z-20">
             <a href="#" class="relative z-20 flex items-center">
                 <img src="./images/logo-light-bg.png" alt="Ashar Industries" class="h-28 w-auto object-contain">
             </a>
@@ -102,10 +156,11 @@
                 <a href="contact.html" class="mobile-link mt-6 text-sm font-sans font-medium uppercase tracking-widest text-brand-black border border-brand-black px-8 py-3 hover:bg-brand-black hover:text-white transition-colors">Request Quote</a>
             </div>
         </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Editorial Hero Section -->
-    <section id="home" class="pt-24 min-h-screen flex flex-col">
+    <section id="home" class="pt-32 min-h-screen flex flex-col">
         <div class="flex-grow grid lg:grid-cols-2 max-w-[1400px] mx-auto w-full px-6 lg:px-12 gap-12 lg:gap-0">
             <!-- Text Content -->
             <div class="flex flex-col justify-center py-16 lg:pr-16" data-aos="fade-up" data-aos-duration="1000">
@@ -568,6 +623,56 @@
                 }
             });
         });
+
+        // Announcement Popup Logic
+        const popup = document.getElementById('announcement-popup');
+        const popupContent = document.getElementById('announcement-content');
+        const closePopupBtn = document.getElementById('close-popup-btn');
+        const acceptPopupBtn = document.getElementById('accept-popup-btn');
+
+        function openPopup() {
+            popup.classList.remove('opacity-0', 'pointer-events-none');
+            popup.classList.add('opacity-100', 'pointer-events-auto');
+            popupContent.classList.remove('scale-95');
+            popupContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closePopup() {
+            popup.classList.remove('opacity-100', 'pointer-events-auto');
+            popup.classList.add('opacity-0', 'pointer-events-none');
+            popupContent.classList.remove('scale-100');
+            popupContent.classList.add('scale-95');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Save to session storage so it doesn't show again in the same session
+            sessionStorage.setItem('announcementSeen', 'true');
+        }
+
+        const topNoticeBar = document.getElementById('top-notice-bar');
+
+        if (closePopupBtn && acceptPopupBtn && popup) {
+            closePopupBtn.addEventListener('click', closePopup);
+            acceptPopupBtn.addEventListener('click', closePopup);
+            
+            if (topNoticeBar) {
+                topNoticeBar.addEventListener('click', openPopup);
+            }
+            
+            // Close on click outside
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    closePopup();
+                }
+            });
+            
+            // Show popup on load with a slight delay if not seen in session
+            window.addEventListener('load', () => {
+                if (!sessionStorage.getItem('announcementSeen')) {
+                    setTimeout(openPopup, 2000);
+                }
+            });
+        }
     </script>
     <!-- WhatsApp Floating Icon -->
     <a href="https://wa.me/+923002604403" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 bg-[#25D366] text-white p-3.5 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 z-50 flex items-center justify-center">
